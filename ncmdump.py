@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 __author__ = 'qyh'
 __date__ = '2018/10/16 9:22'
@@ -7,6 +8,7 @@ import struct
 import base64
 import json
 import os
+import sys
 from Crypto.Cipher import AES
 
 
@@ -77,9 +79,23 @@ def dump(file_path):
     f.close()
     return file_name
 
+def analyse(file):
+    default_path = "/Users/ycp/Music/网易云音乐/"
+    if file[0] != '/':
+        filepath = default_path + file
+    else:
+        filepath = file
+    print("done:", dump(filepath))
+
+
 
 if __name__ == '__main__':
-    file_list = ['陈芳语 - 爱你.ncm', '李翊君 - 雨蝶.ncm']
-    for file in file_list:
-        filepath = "F:\CloudMusic\\"+file
-        dump(filepath)
+    if len(sys.argv) > 1:
+        file_list = sys.argv[1:]
+        for file in file_list:
+            analyse(file)
+    else:
+        while True:
+            file = input("input filename: ")
+            analyse(file)
+
