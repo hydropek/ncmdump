@@ -96,6 +96,6 @@ if __name__ == '__main__':
             analyse(file)
     else:
         while True:
-            file = input("input filename: ")
+            file = input("input .ncm file: ")
             analyse(file)
 
